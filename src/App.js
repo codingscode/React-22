@@ -23,7 +23,8 @@ class App extends Component {
     outroState: 'algum outro valor',
     mostrarPessoas: false,
     mostrarCockpit: true,
-    contadorMudanca: 0
+    contadorMudanca: 0,
+    autenticado: false
   }  
   
   static getDerivedStateFromProps(props, state) {
@@ -78,17 +79,22 @@ class App extends Component {
     this.setState({mostrarPessoas: !fazerMostrar});
   }
 
+  loginManipulador = () => {
+    this.setState({autenticado: true});
+  };
+
   render() {
     console.log('[App.js] render')
     let pessoas = null;
     
     if (this.state.mostrarPessoas) {
-      pessoas = 
+      pessoas = (
          <Pessoas 
          pessoas={this.state.pessoas}
          clicked={this.apagarManipuladorPessoa}
-         changed={this.nomeManipuladorAlterado} />
-       
+         changed={this.nomeManipuladorAlterado} 
+         estadoAutenticado={this.state.autenticado}/>
+      )
     }
 
     return (
@@ -99,7 +105,9 @@ class App extends Component {
         title={this.props.appTitulo}
         mostrarPessoas={this.state.mostrarPessoas} 
         pessoasComprimento={this.state.pessoas.length} 
-        clicked={this.toogleManipuladorPessoas} /> : null}
+        clicked={this.toogleManipuladorPessoas} 
+        login={this.loginManipulador}
+        /> : null}
         {pessoas}
       </Auxiliar> 
     ); 

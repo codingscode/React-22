@@ -3,7 +3,7 @@ import classes from './Cockpit.css'
 
 
 const cockpit = (props) => {
-    const toggleBtnRef = useRef(null);
+    const toggleBtnRef = useRef(null); 
     
 
     useEffect(() => {
@@ -47,6 +47,7 @@ const cockpit = (props) => {
         className={botaoClasse}
         onClick={props.clicked}>Alternancia de Pessoas
         </button>
+        <button onClick={props.login}>Log in</button>
      </div>
     );
 };

@@ -27,7 +27,8 @@ class Pessoas extends PureComponent {
           nome={pessoa.nome} 
           idade={pessoa.idade}
           key={pessoa.id}
-          changed={(event) => this.props.changed(event, pessoa.id)}/>
+          changed={(event) => this.props.changed(event, pessoa.id)}
+          estadoAutent={this.props.estadoAutenticado}/>
         )
       })
 
