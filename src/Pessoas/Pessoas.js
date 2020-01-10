@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react'
 
 import Pessoa from '../Pessoa/Pessoa'
 
+
 class Pessoas extends PureComponent {
    
   getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -20,20 +21,19 @@ class Pessoas extends PureComponent {
 
     render() {
       console.log('[Pessoas.js] rendering...');
-      return this.props.pessoas.map((pessoa, index) => {
+      return  (this.props.pessoas.map((pessoa, index) => {
         return (
         <Pessoa 
           click={() => this.props.clicked(index)}
           nome={pessoa.nome} 
           idade={pessoa.idade}
           key={pessoa.id}
-          changed={(event) => this.props.changed(event, pessoa.id)}
-          estadoAutent={this.props.estadoAutenticado}/>
+          changed={(event) => this.props.changed(event, pessoa.id)}/>
         )
       })
-
-    }
-    
+      
+    )
+  }   
 }
 
 export default Pessoas;

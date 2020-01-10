@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react'
 import classes from './Cockpit.css'
+import AutentContexto from '../contexto/autent-contexto'
 
 
 const cockpit = (props) => {
@@ -47,7 +48,9 @@ const cockpit = (props) => {
         className={botaoClasse}
         onClick={props.clicked}>Alternancia de Pessoas
         </button>
-        <button onClick={props.login}>Log in</button>
+        <AutentContexto>
+           {contexto => <button onClick={contexto.login}>Log in</button>}
+        </AutentContexto>
      </div>
     );
 };

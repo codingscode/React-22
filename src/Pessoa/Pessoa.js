@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import classes from './Pessoa.css'
 import Auxiliar from '../hoc/Auxiliar';
 import comClasse from '../hoc/comClasse'
+import AutentContexto from '../contexto/autent-contexto'
+
 
 class Pessoa extends Component {
    constructor(props) {
@@ -21,7 +23,10 @@ class Pessoa extends Component {
       console.log('[Pessoa.js] rendering...') 
       return (
          <Auxiliar>
-            {this.props.estadoAutent ? <p>Autenticado !</p> : <p>Por favor Logar</p>}
+            <AutentContexto.Consumer>
+               {(contexto) => contexto.autenticado ? <p>Autenticado !</p> : <p>Por favor Logar</p>}
+            </AutentContexto.Consumer>
+            
             <p key="i1" onClick={this.props.click}>Eu sou {this.props.nome}, Eu sou uma Pessoa e tenho {this.props.idade} anos !</p>
             <p key="i2" >{this.props.children}</p>
             <input key="i3" ref={this.inputElementRef} type='text' onChange={this.props.changed} value={this.props.nome}></input>

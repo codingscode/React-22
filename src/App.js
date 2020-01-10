@@ -5,6 +5,7 @@ import Pessoas from './Pessoas/Pessoas';
 import Cockpit from './Cockpit/Cockpit';
 import comClasse from './hoc/comClasse';
 import Auxiliar from './hoc/Auxiliar'
+import AutentContexto from './contexto/autent-contexto'
 
 
 class App extends Component {
@@ -100,15 +101,16 @@ class App extends Component {
     return (
       <Auxiliar > 
       <button onClick={() => {this.setState({mostrarCockpit: false})}}>Remover Cockpit</button>
+       <AutentContexto.Provider value={{autenticado: this.state.autenticado, login: this.loginManipulador}}>
         {this.state.mostrarCockpit ?
         <Cockpit 
         title={this.props.appTitulo}
         mostrarPessoas={this.state.mostrarPessoas} 
         pessoasComprimento={this.state.pessoas.length} 
         clicked={this.toogleManipuladorPessoas} 
-        login={this.loginManipulador}
         /> : null}
         {pessoas}
+       </AutentContexto.Provider>
       </Auxiliar> 
     ); 
   }
