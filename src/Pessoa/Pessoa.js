@@ -14,18 +14,19 @@ class Pessoa extends Component {
      this.inputElementRef = React.createRef();
    }
 
+   static contextType = AutentContexto;
+
    componentDidMount() {
       //this.inputElement.focus();  //destaca o 3º
       this.inputElementRef.current.focus();
+      console.log(this.context.autenticado);  //o context é palavra reservada
    }
 
    render() {
       console.log('[Pessoa.js] rendering...') 
       return (
          <Auxiliar>
-            <AutentContexto.Consumer>
-               {(contexto) => contexto.autenticado ? <p>Autenticado !</p> : <p>Por favor Logar</p>}
-            </AutentContexto.Consumer>
+            {this.context.autenticado ? (<p>Autenticado !</p>) : (<p>Por favor Logar</p>)}
             
             <p key="i1" onClick={this.props.click}>Eu sou {this.props.nome}, Eu sou uma Pessoa e tenho {this.props.idade} anos !</p>
             <p key="i2" >{this.props.children}</p>
